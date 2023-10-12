@@ -53,4 +53,4 @@ jobs:
       run: aws s3 cp --region $AWS_REGION ./docker-compose.yml s3://$S3_BUCKET_NAME/docker-compose.yml
 
     - name: Code Deploy
-      run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME, bundleType=yml, key=docker-compose.yml
+      run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=yml,key=docker-compose.yml
