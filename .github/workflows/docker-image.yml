@@ -56,4 +56,12 @@ jobs:
       run: aws s3 cp --region $AWS_REGION ./docker-compose.yml s3://$S3_BUCKET_NAME/docker-compose.zip
 
     - name: Code Deploy
-      run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=docker-compose.zip
+      run: | 
+        echo "CODEDEPLOY_NAME $CODEDEPLOY_GROUP"
+        echo "CODEDEPLOY_GROUP $CODEDEPLOY_NAME"
+        aws deploy create-deployment \
+        --application-name $CODEDEPLOY_NAME \ 
+        --deployment-config-name CodeDeployDefault.AllAtOnce \ 
+        --deployment-group-name $CODEDEPLOY_GROUP  \
+        --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=docker-compose.zip \
+        --region ap-northeast-2 \
