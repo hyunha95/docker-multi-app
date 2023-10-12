@@ -3,7 +3,7 @@ services:
   frontend:
     build:
       dockerfile: nohyunha95/docker-frontend
-      context: ./frontend
+#      context: ./frontend
     volumes:
       - /app/node_modules
       - ./frontend:/app
@@ -13,14 +13,14 @@ services:
     restart: always
     build:
       dockerfile: nohyunha95/docker-nginx
-      context: ./nginx
+#      context: ./nginx
     ports:
       - "80:80"
 
   backend:
     build:
       dockerfile: nohyunha95/docker-backend
-      context: ./backend
+#      context: ./backend
     container_name: app_backend
     volumes:
       - /app/node_modules
