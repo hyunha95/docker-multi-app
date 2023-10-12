@@ -1,0 +1,1 @@
+docker-compose -f /home/ec2-user/action/docker-compose.yml up
