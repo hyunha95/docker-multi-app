@@ -8,5 +8,4 @@ const pool = mysql.createPool({
     port: process.env.MYSQL_PORT
 })
 
-
 exports.pool = pool;
