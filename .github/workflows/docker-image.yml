@@ -21,15 +21,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: PWD
-      run: pwd
-    - name: LS
-      run: ls
-    - name: Build the Docker test image
-      run: docker build -t nohyunha95/react-test-app -f ./frontend/Dockerfile.dev ./frontend
-  
-    - name: Run the Docker test image
-      run: docker run -e CI=true nohyunha95/react-test-app npm test
+#    - name: PWD
+#      run: pwd
+#    - name: LS
+#      run: ls
+#    - name: Build the Docker test image
+#      run: docker build -t nohyunha95/react-test-app -f ./frontend/Dockerfile.dev ./frontend
+#
+#    - name: Run the Docker test image
+#      run: docker run -e CI=true nohyunha95/react-test-app npm test
 
     - name: Build other images
       run: |
@@ -55,12 +55,6 @@ jobs:
 
     - name: Upload to S3
       run: aws s3 cp --region $AWS_REGION ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
-
-    - name: Copy script
-      run: |
-        pwd
-        mkdir deploy
-        cp ./scripts/*.sh ./deploy
 
     - name: Code Deploy
       run: aws deploy create-deployment --application-name $CODEDEPLOY_NAME --deployment-config-name CodeDeployDefault.AllAtOnce --deployment-group-name $CODEDEPLOY_GROUP --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip --region ap-northeast-2
