@@ -57,8 +57,6 @@ jobs:
 
     - name: Code Deploy
       run: | 
-        echo "CODEDEPLOY_NAME $CODEDEPLOY_GROUP"
-        echo "CODEDEPLOY_GROUP $CODEDEPLOY_NAME"
         aws deploy create-deployment \
         --application-name $CODEDEPLOY_NAME \ 
         --deployment-config-name CodeDeployDefault.AllAtOnce \ 
