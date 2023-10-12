@@ -24,13 +24,12 @@ services:
     build:
 #      dockerfile: nohyunha95/docker-backend
       context: ./backend
-    container_name: app_backend
     volumes:
       - /app/node_modules
       - ./backend:/app
     environment:
-      MYSQL_HOST: echo MYSQL_HOST
-      MYSQL_USER: echo $MYSQL_USER
-      MYSQL_ROOT_PASSWORD: echo MYSQL_ROOT_PASSWORD
-      MYSQL_DATABASE: echo MYSQL_DATABASE
-      MYSQL_PORT: echo MYSQL_PORT
+      MYSQL_HOST: $MYSQL_HOST
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_PORT: $MYSQL_PORT
